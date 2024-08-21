@@ -25,6 +25,10 @@ public class Video {
 	@Column(length = 104857600)
 	private byte[] videofile;
 	
+	@Lob
+	@Column(length = 104857600)
+	private byte[] image;
+	
 	@ManyToOne
 	@JoinColumn(name = "creator_id")
 	private Creator creator;
@@ -40,13 +44,14 @@ public class Video {
 		super();
 	}
 
-	public Video(int id, String description, String title, byte[] videofile, Creator creator, Category category,
-			boolean status, String agelevel) {
+	public Video(int id, String description, String title, byte[] videofile, byte[] image, Creator creator,
+			Category category, boolean status, String agelevel) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.title = title;
 		this.videofile = videofile;
+		this.image = image;
 		this.creator = creator;
 		this.category = category;
 		this.status = status;
@@ -56,8 +61,8 @@ public class Video {
 	@Override
 	public String toString() {
 		return "Video [id=" + id + ", description=" + description + ", title=" + title + ", videofile="
-				+ Arrays.toString(videofile) + ", creator=" + creator + ", category=" + category + ", status=" + status
-				+ ", agelevel=" + agelevel + "]";
+				+ Arrays.toString(videofile) + ", image=" + Arrays.toString(image) + ", creator=" + creator
+				+ ", category=" + category + ", status=" + status + ", agelevel=" + agelevel + "]";
 	}
 
 	public int getId() {
@@ -90,6 +95,14 @@ public class Video {
 
 	public void setVideofile(byte[] videofile) {
 		this.videofile = videofile;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public Creator getCreator() {

@@ -51,7 +51,7 @@ public class CreatorController {
 	@PutMapping
 	public String doUpdateCreator(@RequestBody Creator cr) {
 		try {
-			service.updateCreator(cr);;
+			service.updateCreator(cr);
 			msg = s;
 		}
 		catch (Exception e) {

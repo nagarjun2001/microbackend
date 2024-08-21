@@ -44,6 +44,7 @@ public class VideoController {
 	@PostMapping("/upload")
 	public String addVideo(@RequestParam("file") MultipartFile file,
 			@RequestParam("title") String title,
+			@RequestParam("image") MultipartFile image,
 			@RequestParam("description") String description,
 			@RequestParam("category_id") int categoryId,
 			@RequestParam("creator_id") int creatorId,
@@ -60,6 +61,7 @@ public class VideoController {
 			Video v = new Video();
 			v.setTitle(title);
 			v.setDescription(description);
+			v.setImage(image.getBytes());
 			v.setVideofile(file.getBytes());
 			v.setCategory(category);
 			v.setCreator(creator);

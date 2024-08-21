@@ -87,6 +87,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/{userId}/block/{videoId}")
+	@CrossOrigin(origins = "http://localhost:3000")
     public String addBlockedVideo(@PathVariable("userId") int userId, @PathVariable("videoId") Long videoId) {
         try {
             service.addBlockedVideo(userId, videoId);
@@ -109,6 +110,7 @@ public class UserController {
     }
     
     @PostMapping("/{userId}/block/category/{category}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public String addBlockedCategory(@PathVariable("userId") int userId, @PathVariable("category") String category) {
         try {
             service.addBlockedCat(userId, category);

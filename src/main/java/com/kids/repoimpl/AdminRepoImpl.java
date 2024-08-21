@@ -26,9 +26,7 @@ public class AdminRepoImpl implements AdminRepo{
 
 	@Override
 	public void addAdmin(Admin admin) {
-		if(admin != null) {
 			emanager.persist(admin);
-		}
 	}
 
 
