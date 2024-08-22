@@ -1,54 +1,76 @@
 package com.kids.serviceimplementation;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
+import com.kids.model.Creator;
+import com.kids.repo.CreatorRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-class CreatorSerImplTest {
+import java.util.Collections;
+import java.util.List;
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+public class CreatorSerImplTest {
 
-	@Test
-	void testCreatorSerImpl() {
-		fail("Not yet implemented");
-	}
+    @InjectMocks
+    private CreatorSerImpl creatorService;
 
-	@Test
-	void testSaveCreator() {
-		fail("Not yet implemented");
-	}
+    @Mock
+    private CreatorRepo creatorRepo;
 
-	@Test
-	void testFindAllCreator() {
-		fail("Not yet implemented");
-	}
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-	@Test
-	void testFindByCreatorId() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testSaveCreator() {
+        Creator creator = new Creator();
+        creatorService.saveCreator(creator);
+        verify(creatorRepo, times(1)).saveCreator(creator);
+    }
 
-	@Test
-	void testUpdateCreator() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testFindAllCreator() {
+        List<Creator> creators = Collections.singletonList(new Creator());
+        when(creatorRepo.findAllCreator()).thenReturn(creators);
 
-	@Test
-	void testDeleteCreator() {
-		fail("Not yet implemented");
-	}
+        List<Creator> result = creatorService.findAllCreator();
+        assertEquals(creators, result);
+    }
 
-	@Test
-	void testFindByEmail() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testFindByCreatorId() {
+        Creator creator = new Creator();
+        when(creatorRepo.findByCreatorId(1)).thenReturn(creator);
 
+        Creator result = creatorService.findByCreatorId(1);
+        assertEquals(creator, result);
+    }
+
+    @Test
+    public void testUpdateCreator() {
+        Creator creator = new Creator();
+        creatorService.updateCreator(creator);
+        verify(creatorRepo, times(1)).updateCreator(creator);
+    }
+
+    @Test
+    public void testDeleteCreator() {
+        creatorService.deleteCreator(1);
+        verify(creatorRepo, times(1)).deleteCreator(1);
+    }
+
+    @Test
+    public void testFindByEmail() {
+        Creator creator = new Creator();
+        when(creatorRepo.findByEmail("madhan@yahoo.com")).thenReturn(creator);
+
+        Creator result = creatorService.findByEmail("madhan@yahoo.com");
+        assertEquals(creator, result);
+    }
 }

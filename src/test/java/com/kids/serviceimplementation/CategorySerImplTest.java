@@ -1,54 +1,83 @@
 package com.kids.serviceimplementation;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-import org.junit.jupiter.api.AfterEach;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-class CategorySerImplTest {
+import com.kids.model.Category;
+import com.kids.repo.CategoryRepo;
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+public class CategorySerImplTest {
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+    @Mock
+    private CategoryRepo categoryRepo;
 
-	@Test
-	void testCategorySerImpl() {
-		fail("Not yet implemented");
-	}
+    @InjectMocks
+    private CategorySerImpl categoryService;
 
-	@Test
-	void testSaveCategory() {
-		fail("Not yet implemented");
-	}
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-	@Test
-	void testFindAllCategory() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testSaveCategory() {
+        Category category = new Category(1, "Rhymes");
+        categoryService.saveCategory(category);
+        verify(categoryRepo, times(1)).saveCategory(category);
+    }
 
-	@Test
-	void testFindByCategoryId() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testFindAllCategory() {
+        Category category1 = new Category(1, "Cartoons");
+        Category category2 = new Category(2, "Songs");
+        List<Category> categories = Arrays.asList(category1, category2);
+        when(categoryRepo.findAllCategory()).thenReturn(categories);
+        List<Category> result = categoryService.findAllCategory();
+        assertEquals(2, result.size());
+        assertTrue(result.contains(category1));
+        assertTrue(result.contains(category2));
+    }
 
-	@Test
-	void testUpdateCategory() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testFindByCategoryId() {
+        Category category = new Category(1, "Rhymes");
+        when(categoryRepo.findByCategoryId(1)).thenReturn(category);
+        Category result = categoryService.findByCategoryId(1);
+        assertNotNull(result);
+        assertEquals(1, result.getId());
+        assertEquals("Rhymes", result.getCategory_name());
+    }
 
-	@Test
-	void testDeleteCategory() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testUpdateCategory() {
+        Category category = new Category(1, "Rhymes");
+        categoryService.updateCategory(category);
+        verify(categoryRepo, times(1)).updateCategory(category);
+    }
 
-	@Test
-	void testFindByCatName() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testDeleteCategory() {
+        categoryService.deleteCategory(1);
+        verify(categoryRepo, times(1)).deleteCategory(1);
+    }
 
+    @Test
+    public void testFindByCatName() {
+        Category category = new Category(1, "Rhymes");
+        when(categoryRepo.findByCatName("Rhymes")).thenReturn(category);
+        Category result = categoryService.findByCatName("Rhymes");
+        assertNotNull(result);
+        assertEquals(1, result.getId());
+        assertEquals("Rhymes", result.getCategory_name());
+    }
 }

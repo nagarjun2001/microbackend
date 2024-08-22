@@ -1,79 +1,114 @@
 package com.kids.serviceimplementation;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.AfterEach;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-class UserSerImplTest {
+import com.kids.model.Users;
+import com.kids.repo.UserRepo;
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+public class UserSerImplTest {
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+    @Mock
+    private UserRepo repo;
 
-	@Test
-	void testUserSerImpl() {
-		fail("Not yet implemented");
-	}
+    @InjectMocks
+    private UserSerImpl userSerImpl;
 
-	@Test
-	void testAddUser() {
-		fail("Not yet implemented");
-	}
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-	@Test
-	void testGetAllUsers() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testAddUser() {
+        Users user = new Users();
+        doNothing().when(repo).addUser(user);
+        userSerImpl.addUser(user);
+    }
 
-	@Test
-	void testDeleteUsers() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testGetAllUsers() {
+        Users user1 = new Users();
+        Users user2 = new Users();
+        List<Users> users = Arrays.asList(user1, user2);
+        when(repo.getAllUsers()).thenReturn(users);
+        List<Users> result = userSerImpl.getAllUsers();
+        assertEquals(users, result);
+    }
 
-	@Test
-	void testFindUserById() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testDeleteUsers() {
+        doNothing().when(repo).deleteUser(anyInt());
+        userSerImpl.deleteUsers(1);
+    }
 
-	@Test
-	void testUpdateUsers() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testFindUserById() {
+        Users user = new Users();
+        when(repo.findUserById(anyInt())).thenReturn(user);
+        Users result = userSerImpl.findUserById(1);
+        assertEquals(user, result);
+    }
 
-	@Test
-	void testFindByUsername() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testUpdateUsers() {
+        Users user = new Users();
+        doNothing().when(repo).updateUser(user);
+        userSerImpl.updateUsers(user);
+    }
 
-	@Test
-	void testFindByEmail() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testFindByUsername() {
+        Users user = new Users();
+        when(repo.findByUsername(any())).thenReturn(user);
+        Users result = userSerImpl.findByUsername("username");
+        assertEquals(user, result);
+    }
 
-	@Test
-	void testAddBlockedVideo() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testFindByEmail() {
+        Users user = new Users();
+        when(repo.findByEmail(any())).thenReturn(user);
+        Users result = userSerImpl.findByEmail("madhan@gmail.com");
+        assertEquals(user, result);
+    }
 
-	@Test
-	void testRemoveBlockedVideo() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testAddBlockedVideo() {
+        doNothing().when(repo).addBlockedVideo(anyInt(), anyLong());
+        userSerImpl.addBlockedVideo(1, 100L);
+    }
 
-	@Test
-	void testAddBlockedCat() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testRemoveBlockedVideo() {
+        doNothing().when(repo).removeBlockedVideo(anyInt(), anyLong());
+        userSerImpl.removeBlockedVideo(1, 100L);
+    }
 
-	@Test
-	void testRemoveBlockedCat() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testAddBlockedCat() {
+        doNothing().when(repo).addBlockedCat(anyInt(), any());
+        userSerImpl.addBlockedCat(1, "category");
+    }
 
+    @Test
+    void testRemoveBlockedCat() {
+        doNothing().when(repo).removeBlockedCat(anyInt(), any());
+        userSerImpl.removeBlockedCat(1, "category");
+    }
 }

@@ -9,7 +9,6 @@ import com.kids.repo.VideoRepo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository

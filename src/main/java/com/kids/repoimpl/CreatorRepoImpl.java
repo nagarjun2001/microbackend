@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.kids.model.Creator;
-import com.kids.model.Users;
 import com.kids.repo.CreatorRepo;
 
 import jakarta.persistence.EntityManager;

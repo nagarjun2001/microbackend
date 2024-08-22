@@ -2,7 +2,6 @@ package com.kids.repoimpl;
 
 import java.util.List;
 
-import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 
 import com.kids.model.Users;
