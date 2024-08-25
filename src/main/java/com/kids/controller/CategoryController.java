@@ -77,9 +77,9 @@ public class CategoryController {
 		return service.findByCategoryId(id);
 	}
 	
-	@GetMapping("/Categoryname/{Categoryname}")
-	public Category doFindByCategoryname(@PathVariable("Categoryname") String Categoryname) {
-		return service.findByCatName(Categoryname);
+	@GetMapping("/Categoryname/{categoryname}")
+	public Category doFindByCategoryname(@PathVariable("categoryname") String categoryname) {
+		return service.findByCatName(categoryname);
 	}
 	
 }

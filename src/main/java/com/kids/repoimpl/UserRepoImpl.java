@@ -85,7 +85,7 @@ public class UserRepoImpl implements UserRepo{
     }
 
 	@Override
-	public void addBlockedCat(int userId, String category) {
+	public void addBlockedCat(int userId, Long category) {
 		Users user = findUserById(userId);
 		if(!user.getBlockedcatid().contains(category)) {
 			user.getBlockedcatid().add(category);
@@ -94,10 +94,10 @@ public class UserRepoImpl implements UserRepo{
 	}
 
 	@Override
-	public void removeBlockedCat(int userId, String category) {
+	public void removeBlockedCat(int userId, Long category) {
 		Users user = findUserById(userId);
 		user.getBlockedcatid().remove(category);
 		emanager.merge(user);
 	}
-	
+
 }

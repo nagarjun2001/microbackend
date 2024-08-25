@@ -5,7 +5,6 @@ import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,7 +54,7 @@ public class CategorySerImplTest {
         Category result = categoryService.findByCategoryId(1);
         assertNotNull(result);
         assertEquals(1, result.getId());
-        assertEquals("Rhymes", result.getCategory_name());
+        assertEquals("Rhymes", result.getCategoryname());
     }
 
     @Test
@@ -78,6 +77,6 @@ public class CategorySerImplTest {
         Category result = categoryService.findByCatName("Rhymes");
         assertNotNull(result);
         assertEquals(1, result.getId());
-        assertEquals("Rhymes", result.getCategory_name());
+        assertEquals("Rhymes", result.getCategoryname());
     }
 }

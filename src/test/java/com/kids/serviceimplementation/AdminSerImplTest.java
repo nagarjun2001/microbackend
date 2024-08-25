@@ -37,9 +37,8 @@ public class AdminSerImplTest {
 
     @Test
     public void testGetAllAdmin() {
-        List<Admin> adminList = List.of(
-                new Admin(1, "Nagarjun", "nagarjun", "Nagarjun@123"),
-                new Admin(2, "Suresh", "sureshbabu", "Suresh@123")
+        List<Admin> adminList = List.of(new Admin(1, "Nagarjun", "nagarjun", "Nagarjun@123"),
+        		new Admin(2, "Suresh", "sureshbabu", "Suresh@123")
         );
         when(adminRepo.getAllAdmins()).thenReturn(adminList);
         List<Admin> result = adminSerImpl.getAllAdmin();

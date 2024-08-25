@@ -64,12 +64,12 @@ public class UserSerImpl implements UserService{
     }
 
 	@Override
-	public void addBlockedCat(int userId, String category) {
+	public void addBlockedCat(int userId, Long category) {
 		repo.addBlockedCat(userId, category);
 	}
 
 	@Override
-	public void removeBlockedCat(int userId, String category) {
+	public void removeBlockedCat(int userId, Long category) {
 		repo.removeBlockedCat(userId, category);
 	}
     

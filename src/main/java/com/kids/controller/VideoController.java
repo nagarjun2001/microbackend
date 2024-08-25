@@ -26,9 +26,8 @@ import com.kids.serviceimplementation.VideoSerImpl;
 @RequestMapping("/video")
 public class VideoController {
 	
-	private static String s = "Success";
-	private static String f = "Failure";
-	private static String msg = "";
+	String s = "Success";
+	String f = "Failure";
 	
 	VideoSerImpl service;
 	CategoryRepo catser;
@@ -49,7 +48,7 @@ public class VideoController {
 			@RequestParam("category_id") int categoryId,
 			@RequestParam("creator_id") int creatorId,
 			@RequestParam("agelevel") String agelevel) {
-		String msg1 = "";
+		String msg = "";
 		try {
 			Category category = catser.findByCategoryId(categoryId);
             Creator creator = creatrepo.findByCreatorId(creatorId);
@@ -69,12 +68,12 @@ public class VideoController {
 			v.setStatus(false);
 			
 			service.save(v);
-			msg1 = "Success";
+			msg = "Success";
 		}
 		catch (Exception e) {
-			msg1 = "Failure";
+			msg = "Failure";
 		}
-		return msg1;
+		return msg;
 	}
 	
 	@GetMapping("/all")
@@ -105,6 +104,7 @@ public class VideoController {
 	
 	@DeleteMapping("/{id}")
 	public String doDelVid(@PathVariable("id") int id) {
+		String msg = "";
 		try {
 			service.deleteVideo(id);
 			msg = s;

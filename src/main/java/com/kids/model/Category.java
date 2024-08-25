@@ -1,6 +1,5 @@
 package com.kids.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,21 +12,21 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String category_name;
+	private String categoryname;
 
 	public Category() {
 		super();
 	}
 
-	public Category(int id, String category_name) {
+	public Category(int id, String categoryname) {
 		super();
 		this.id = id;
-		this.category_name = category_name;
+		this.categoryname = categoryname;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", category_name=" + category_name + "]";
+		return "Category [id=" + id + ", categoryname=" + categoryname + "]";
 	}
 
 	public int getId() {
@@ -38,12 +37,14 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getCategory_name() {
-		return category_name;
+	public String getCategoryname() {
+		return categoryname;
 	}
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
 	}
+
+	
 
 }

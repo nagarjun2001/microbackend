@@ -51,11 +51,11 @@ public class CategoryRepoImpl implements CategoryRepo{
 	}
 
 	@Override
-	public Category findByCatName(String Categoryname) {
-		String hql = "From Category c where c.category_name = :category_name";
+	public Category findByCatName(String categoryname) {
+		String hql = "From Category c where c.categoryname = :categoryname";
 		Query q = emanager.createQuery(hql);
-		q.setParameter("category_name", Categoryname);
+		q.setParameter("categoryname", categoryname);
 		return (Category) q.getSingleResult();
 	}
-	
+
 }

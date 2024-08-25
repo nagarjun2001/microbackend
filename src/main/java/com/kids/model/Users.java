@@ -27,14 +27,14 @@ public class Users {
 	private List<Long> blockedvideosid;
 
 	@ElementCollection
-	private List<String> blockedcatid;
+	private List<Long> blockedcatid;
 	
 	public Users() {
 		super();
 	}
 
 	public Users(int id, String uname, String fname, String lname, String email, String password, Long mobno,
-			String childAge, List<Long> blockedvideosid, List<String> blockedcatid) {
+			String childAge, List<Long> blockedvideosid, List<Long> blockedcatid) {
 		super();
 		this.id = id;
 		this.uname = uname;
@@ -127,12 +127,12 @@ public class Users {
 		this.blockedvideosid = blockedvideosid;
 	}
 
-	public List<String> getBlockedcatid() {
+	public List<Long> getBlockedcatid() {
 		return blockedcatid;
 	}
 
-	public void setBlockedcatid(List<String> blockedcatid) {
+	public void setBlockedcatid(List<Long> blockedcatid) {
 		this.blockedcatid = blockedcatid;
 	}
-	
+
 }

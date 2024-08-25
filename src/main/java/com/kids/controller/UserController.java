@@ -109,9 +109,9 @@ public class UserController {
         return msg;
     }
     
-    @PostMapping("/{userId}/block/category/{category}")
+    @PostMapping("/{userId}/block/category/{categoryid}")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String addBlockedCategory(@PathVariable("userId") int userId, @PathVariable("category") String category) {
+    public String addBlockedCategory(@PathVariable("userId") int userId, @PathVariable("categoryid") Long category) {
         try {
             service.addBlockedCat(userId, category);
             msg = s;
@@ -121,8 +121,8 @@ public class UserController {
         return msg;
     }
 
-    @DeleteMapping("/{userId}/block/category/{category}")
-    public String removeBlockedCategory(@PathVariable("userId") int userId, @PathVariable("category") String category) {
+    @DeleteMapping("/{userId}/block/category/{categoryid}")
+    public String removeBlockedCategory(@PathVariable("userId") int userId, @PathVariable("categoryid") Long category) {
         try {
             service.removeBlockedCat(userId, category);
             msg = s;

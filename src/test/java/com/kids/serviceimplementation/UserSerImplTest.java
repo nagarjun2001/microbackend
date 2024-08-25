@@ -5,8 +5,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -103,12 +101,12 @@ public class UserSerImplTest {
     @Test
     void testAddBlockedCat() {
         doNothing().when(repo).addBlockedCat(anyInt(), any());
-        userSerImpl.addBlockedCat(1, "category");
+        userSerImpl.addBlockedCat(1, 200L);
     }
 
     @Test
     void testRemoveBlockedCat() {
         doNothing().when(repo).removeBlockedCat(anyInt(), any());
-        userSerImpl.removeBlockedCat(1, "category");
+        userSerImpl.removeBlockedCat(1, 200L);
     }
 }

@@ -14,6 +14,6 @@ public interface UserService {
 	public Users findByEmail(String email);
 	void addBlockedVideo(int userId, Long videoId);
     void removeBlockedVideo(int userId, Long videoId);
-    void addBlockedCat(int userId, String category);
-    void removeBlockedCat(int userId, String category);
+    void addBlockedCat(int userId, Long category);
+    void removeBlockedCat(int userId, Long category);
 }

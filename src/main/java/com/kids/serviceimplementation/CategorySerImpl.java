@@ -44,8 +44,8 @@ public class CategorySerImpl implements CategoryService{
 	}
 
 	@Override
-	public Category findByCatName(String Categoryname) {
-		return repo.findByCatName(Categoryname);
+	public Category findByCatName(String categoryname) {
+		return repo.findByCatName(categoryname);
 	}
-	
+
 }

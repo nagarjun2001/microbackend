@@ -11,5 +11,5 @@ public interface CategoryRepo {
 	public Category findByCategoryId(int id);
 	public void updateCategory(Category cat);
 	public void deleteCategory(int id);
-	public Category findByCatName(String Categoryname);
+	public Category findByCatName(String categoryname);
 }
